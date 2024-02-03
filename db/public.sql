@@ -70,8 +70,8 @@ insert into tbl_Empleados (idrrhhempleado,idpuesto)
 select 1,1 union ALL
 select 2,4
 
-drop table tbl_Puestos
-drop table tbl_Departamento
+-- drop table tbl_Puestos
+-- drop table tbl_Departamento
 
 
 
