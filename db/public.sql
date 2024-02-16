@@ -72,12 +72,53 @@ select 2,4
 
 -- drop table tbl_Puestos
 -- drop table tbl_Departamento
-
+--drop table tbl_Empleados_Vacaciones
 
 
 insert into tbl_RRHH(identidad,nombre)
 values
         ('0501198011962','Melida Romero')
+
+
+ create table tbl_Empleados_Permisos
+(
+    idPermiso serial primary key ,
+    idRRHHempleado int,
+    motivo VARCHAR(1000),
+    tiempo varchar(500), 
+    creado TIMESTAMP DEFAULT current_timestamp
+);       
+
+insert into tbl_Empleados_Permisos(idRRHHempleado,motivo,tiempo)
+select 1,'Asuntos Familiares','1 dia' union ALL
+select 1,'Cita Medica','4 horas' union all
+select 2,'Asuntos Personales','1 dia'
+
+ create table tbl_Empleados_Vacaciones
+(
+    idVacaciones serial primary key ,
+    idRRHHempleado int,
+    fechaInicio DATE,
+    FechaFinal Date,
+    dias int,
+    creado TIMESTAMP DEFAULT current_timestamp
+);    
+
+insert into tbl_Empleados_Vacaciones(idRRHHempleado,fechainicio,fechaFinal)
+VALUES 
+(1, '2024-01-01', '2024-01-05');
+
+ create table tbl_Empleados_Incidentes
+(
+    idIncidentes serial primary key ,
+    idRRHHempleado int,
+    Incidentes VARCHAR(1000),
+    Solucion varchar(1000), 
+    creado TIMESTAMP DEFAULT current_timestamp
+);       
+
+insert into tbl_Empleados_Incidentes(idRRHHempleado,Incidentes,Solucion)
+select 1,'NEGATIVA A CUMPLIR LAS DISPOSICIONES IMPUESTAS POR LA EMPRESA ATRAVEZ DE UN SUPERIOR','SUSPENCION LABORAL SIN GOSE DE SALARIO POR EL TREMIDO DE 3 DIAS DEL 06-08	' 
 
 select * from tbl_RRHH
 
@@ -90,6 +131,11 @@ select * from tbl_Puestos
 
 select * from tbl_Empleados
 
+select * from tbl_Empleados_Permisos
+
+select * from tbl_Empleados_vacaciones
+
+select * from tbl_Empleados_incidentes
 
 select rrhh.nombre,departamento.nombre as departamento, puesto.nombrepuesto as puesto, salario.salario as salario
  from tbl_Empleados empleado
